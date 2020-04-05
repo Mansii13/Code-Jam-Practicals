@@ -3,19 +3,20 @@ using namespace std;
 
 int main()
 {
-	int t;
+	int t,n,TestCase;
 	cin>>t;
-	int TestCase = t;
-
+	TestCase = t;
+	cin>>n;
+	vector< pair < int,int > >v1,v2;
+	map<pair<int,int>,int>store;
 	char condition []={'C','J'};
+	char arr[n];
+	int JMax=v1[0].second,CMax=0,flag1=0,flag2=0;
+	
 	while(t--)
-    {
-		int n;
-		cin>>n;
-		vector< pair < int,int > >v1,v2;
-		map<pair<int,int>,int>store;
+   	{
 		for(int i=0;i<n;i++)
-        {
+        	{
 			int x,y;
 			cin>>x>>y;
 			v2.push_back({x,y});
@@ -23,19 +24,16 @@ int main()
 			store[{x,y}] = i;
 		}
 		sort(v1.begin(),v1.end());
-		char arr[n];
 
 		for(int i=0;i<n;i++)
-        {
+        	{
 			arr[i]=condition[0];
 		}
 
 		arr[store[{v1[0].first,v1[0].second}]]=condition[0];
 
-		int JMax=v1[0].second,CMax=0,flag1=0,flag2=0;
-
 		for(int i=1;i<n;i++)
-        {
+        	{
 			if(v1[i].first>=JMax)
 			{
 				arr[store[{v1[i].first,v1[i].second}]] = condition[0];
@@ -61,7 +59,7 @@ int main()
 
 		cout<<"Case #"<<(TestCase-t)<<": ";
 		if(flag1!=0)
-        {
+        	{
 			cout<<"IMPOSSIBLE"<<endl;
 		}
 		else
